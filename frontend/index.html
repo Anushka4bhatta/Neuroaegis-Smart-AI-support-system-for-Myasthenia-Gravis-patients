@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NeuroAegis AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-root">
+    <!-- =============== SCREEN 1: WELCOME (HERO) ================= -->
+    <section id="screen-welcome" class="screen active">
+      <div class="welcome-layout">
+        <div class="welcome-left">
+          <p class="badge">AI for Myasthenia Gravis Care</p>
+          <h1 class="headline">
+            NeuroAegis AI<br />
+            <span>Smart Support for MG Patients</span>
+          </h1>
+          <p class="subtext">
+            Track fatigue, voice changes, and eyelid drooping (ptosis) using AI-driven analysis.
+            NeuroAegis keeps a digital health log that you can share with your neurologist.
+          </p>
+
+          <ul class="key-points">
+            <li>⚡ Quick AI fatigue screening</li>
+            <li>🗣 Voice fatigue & dysarthria analysis</li>
+            <li>👁 Ptosis monitoring using eye landmarks</li>
+            <li>📊 Central health log for follow-ups</li>
+          </ul>
+
+          <button class="btn primary big" onclick="showScreen('auth')">
+            Get Started
+          </button>
+          <p class="note">Your data is secure and used only for health monitoring.</p>
+        </div>
+
+        <div class="welcome-center">
+          <div class="hero-image-card">
+            <img src="assests/ai_robot.png" alt="AI assistant in medical diagnosis" class="hero-img" />
+            <p class="hero-caption">
+              NeuroAegis AI analyses MG-related fatigue, voice and eye symptoms<br/>
+              to support patients and neurologists.
+            </p>
+          </div>
+        </div>
+
+        <div class="welcome-right">
+          <div class="info-card">
+            <h3>What is Myasthenia Gravis?</h3>
+            <p>
+              Myasthenia Gravis (MG) is a chronic autoimmune neuromuscular disorder
+              that causes fluctuating muscle weakness, especially in the eyes,
+              face, throat, and limbs.
+            </p>
+            <p>
+              Early detection of <strong>fatigue, slurred speech, and ptosis</strong> can
+              help patients seek timely medical care and avoid crises.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== SCREEN 2: LOGIN / SIGNUP ================= -->
+    <section id="screen-auth" class="screen">
+      <div class="auth-wrapper">
+        <div class="auth-layout">
+          <div class="auth-left">
+            <button class="link-btn back" onclick="showScreen('welcome')">← Back to overview</button>
+            <h2>Sign in to NeuroAegis</h2>
+            <p class="subtext">
+              Create a simple account so that your MG health logs and AI assessments
+              can be tracked over time.
+            </p>
+            <ul class="bullet-list">
+              <li>Daily fatigue & symptom tracking</li>
+              <li>AI-based voice and ptosis analysis</li>
+              <li>Shareable logs for neurologist visits</li>
+            </ul>
+          </div>
+
+          <div class="auth-right">
+            <div class="auth-card">
+              <h3>Welcome 👋</h3>
+              <p class="card-subtitle">Login or create a new account</p>
+
+              <div class="tabs">
+                <button id="tab-login" class="tab active" onclick="switchAuthMode('login')">Login</button>
+                <button id="tab-register" class="tab" onclick="switchAuthMode('register')">Register</button>
+              </div>
+
+              <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+                <div id="name-field" class="form-group hidden">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" placeholder="Enter your full name" />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" placeholder="••••••••" required />
+                </div>
+
+                <button type="submit" class="btn primary full-width" id="auth-btn">
+                  Login
+                </button>
+
+                <p class="tiny-text">
+                  (Firebase / backend integration can be added here for real authentication.)
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== SCREEN 3: HOME DASHBOARD ================= -->
+    <section id="screen-home" class="screen">
+      <div class="home-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="logo-block">
+            <div class="logo-dot"></div>
+            <div>
+              <h2 class="logo-title">NeuroAegis AI</h2>
+              <p class="logo-subtitle">MG Assistant</p>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="profile-avatar" id="profile-avatar">P</div>
+            <div>
+              <p class="profile-name" id="sidebar-username">Patient</p>
+              <p class="profile-id">User ID: MG-001</p>
+            </div>
+          </div>
+
+          <nav class="nav-menu">
+            <p class="nav-label">Navigation</p>
+            <button class="nav-item active">Dashboard</button>
+            <button class="nav-item">Tests</button>
+            <button class="nav-item">Logs</button>
+            <button class="nav-item">Chatbot</button>
+          </nav>
+
+          <nav class="nav-menu extra-menu">
+            <p class="nav-label">More</p>
+            <button class="nav-item">About Us</button>
+            <button class="nav-item">Blogs</button>
+            <button class="nav-item">Search Website</button>
+          </nav>
+
+          <div class="emergency-block">
+            <p class="nav-label">Emergency (24×7)</p>
+            <p class="em-text">
+              If you have trouble breathing, swallowing, or sudden severe weakness,
+              go to the nearest emergency hospital immediately.
+            </p>
+
+            <label for="location-select" class="loc-label">Your city</label>
+            <select id="location-select" class="loc-select">
+              <option>Bengaluru</option>
+              <option>Chennai</option>
+              <option>Mumbai</option>
+              <option>Delhi</option>
+              <option>Kolkata</option>
+              <option>Hyderabad</option>
+            </select>
+
+            <p class="em-phone">
+              ☎ MG Helpline: <strong>+91-1800-123-456</strong>
+            </p>
+
+            <button class="btn danger full-width">
+              Book Appointment
+            </button>
+          </div>
+
+          <div class="sidebar-footer">
+            <button class="btn ghost small" onclick="showScreen('auth')">
+              Logout
+            </button>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="home-main">
+          <header class="home-header">
+            <div>
+              <p class="status-label">Welcome back</p>
+              <h2 class="top-title" id="welcome-user">Welcome, Patient</h2>
+              <p class="top-subtitle" id="status-summary">
+                Your MG status is being monitored. Tap a card below to run a check.
+              </p>
+            </div>
+            <div class="pill-info">
+              Last sync: <span>local AI (offline)</span>
+            </div>
+          </header>
+
+          <section class="cards-grid">
+            <!-- Fatigue Card -->
+            <div class="feature-card">
+              <div class="feature-header">
+                <div class="feature-icon">🧠</div>
+                <h3>Fatigue Detection</h3>
+              </div>
+              <p>Check sleep quality, stress level and muscle strength.</p>
+              <button class="btn secondary" onclick="onFatigueClick()">
+                Run Test
+              </button>
+            </div>
+
+            <!-- Voice Card -->
+            <div class="feature-card">
+              <div class="feature-header">
+                <div class="feature-icon">🗣</div>
+                <h3>Voice Analysis</h3>
+              </div>
+              <p>Detect dysarthria and voice fatigue over short recordings.</p>
+              <button class="btn secondary" onclick="onVoiceClick()">
+                Record Voice
+              </button>
+            </div>
+
+            <!-- Ptosis Card -->
+            <div class="feature-card">
+              <div class="feature-header">
+                <div class="feature-icon">👁</div>
+                <h3>Ptosis Check</h3>
+              </div>
+              <p>Screen for eyelid drooping using EAR-based camera detection.</p>
+              <button class="btn secondary" onclick="onPtosisClick()">
+                Open Camera Test
+              </button>
+            </div>
+
+            <!-- Health Log Card -->
+            <div class="feature-card">
+              <div class="feature-header">
+                <div class="feature-icon">📊</div>
+                <h3>Health Log</h3>
+              </div>
+              <p>View your MG health history and AI assessment results.</p>
+              <button class="btn secondary" onclick="onHealthLogClick()">
+                View Log
+              </button>
+            </div>
+          </section>
+
+          <section class="bottom-actions">
+            <button class="btn ghost" onclick="onChatClick()">💬 Chat with NeuroAegis</button>
+            <button class="btn danger" onclick="onEmergencyClick()">⚠ Emergency Help</button>
+          </section>
+        </main>
+      </div>
+    </section>
+  </div>
+
+  <!-- =============== MODALS =============== -->
+
+  <!-- Fatigue Modal -->
+  <div id="fatigue-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeFatigueModal()"></div>
+    <div class="modal-content">
+      <h3>Fatigue Assessment</h3>
+      <p class="modal-desc">Enter today’s details to run AI fatigue detection.</p>
+
+      <label for="fatigue-sleep">Sleep hours (0–12)</label>
+      <input type="number" id="fatigue-sleep" min="0" max="12" step="0.5" />
+
+      <label for="fatigue-stress">Stress level (1–10)</label>
+      <input type="number" id="fatigue-stress" min="1" max="10" step="1" />
+
+      <label for="fatigue-muscle">Muscle strength (1–10)</label>
+      <input type="number" id="fatigue-muscle" min="1" max="10" step="1" />
+
+      <button class="btn primary full-width" onclick="submitFatigueForm()">
+        Run Test
+      </button>
+
+      <p id="fatigue-result" class="modal-result"></p>
+    </div>
+  </div>
+
+  <!-- Voice Modal -->
+  <div id="voice-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeVoiceModal()"></div>
+    <div class="modal-content">
+      <h3>Voice Analysis</h3>
+      <p id="voice-status" class="modal-desc">
+        Starting voice analysis… the backend will record your voice via microphone.
+      </p>
+    </div>
+  </div>
+
+  <!-- Ptosis Modal -->
+  <div id="ptosis-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closePtosisModal()"></div>
+    <div class="modal-content">
+      <h3>Ptosis Check</h3>
+      <p id="ptosis-status" class="modal-desc">
+        Backend camera window will open. Please look at the screen and blink normally.
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
