@@ -66,34 +66,5 @@ The results are processed through a Python backend and presented through a web-b
 
 ## System Architecture
 
-```text
-                 USER
-                   |
-                   v
-        +----------------------+
-        |    Web Interface     |
-        | HTML / CSS / JS      |
-        +----------+-----------+
-                   |
-                   | REST API
-                   v
-        +----------------------+
-        |    Flask Backend     |
-        +----------+-----------+
-                   |
-       +-----------+-----------+
-       |           |           |
-       v           v           v
-   FATIGUE       VOICE       PTOSIS
-      |             |           |
-      v             v           v
-   ML Model      Librosa     OpenCV
-                 + ML        + MediaPipe
-       |             |           |
-       +-------------+-----------+
-                     |
-                     v
-              Assessment Result
-                     |
-                     v
-               Health Logging
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/64c7518e-ed66-4020-b00a-3e1eefe9df82" />
+
